@@ -52,9 +52,9 @@ ActuatorSingleTrackModel::ActuatorSingleTrackModel(ros::NodeHandle node_handle, 
     cacheAcceleration_->registerCallback(boost::bind(&ActuatorSingleTrackModel::accelerationCallback, this, _1));
 }
 
-void ActuatorSingleTrackModel::steeringCallback(const simulation_only_msgs::StampedFloat64::ConstPtr& msg) {
+void ActuatorSingleTrackModel::steeringCallback(const automated_driving_msgs::StampedFloat64::ConstPtr& msg) {
 
-    const simulation_only_msgs::StampedFloat64::ConstPtr msg_cached{
+    const automated_driving_msgs::StampedFloat64::ConstPtr msg_cached{
         cacheSteering_->getElemBeforeTime(ros::Time(ros::Time::now().toSec() - params_.delay_steering))};
     if (msg_cached == NULL)
         return;
@@ -63,9 +63,9 @@ void ActuatorSingleTrackModel::steeringCallback(const simulation_only_msgs::Stam
     steeringBuffer_ = msg_cached->data;
 }
 
-void ActuatorSingleTrackModel::accelerationCallback(const simulation_only_msgs::StampedFloat64::ConstPtr& msg) {
+void ActuatorSingleTrackModel::accelerationCallback(const automated_driving_msgs::StampedFloat64::ConstPtr& msg) {
 
-    const simulation_only_msgs::StampedFloat64::ConstPtr msg_cached{
+    const automated_driving_msgs::StampedFloat64::ConstPtr msg_cached{
         cacheAcceleration_->getElemBeforeTime(ros::Time(ros::Time::now().toSec() - params_.delay_acceleration))};
     if (msg_cached == NULL)
         return;

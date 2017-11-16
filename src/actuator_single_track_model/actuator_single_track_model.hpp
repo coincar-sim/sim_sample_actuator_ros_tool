@@ -18,7 +18,7 @@
 #include <automated_driving_msgs/ObjectState.h>
 #include <automated_driving_msgs/ObjectStateArray.h>
 #include <simulation_only_msgs/DeltaTrajectoryWithID.h>
-#include <simulation_only_msgs/StampedFloat64.h>
+#include <automated_driving_msgs/StampedFloat64.h>
 #include <simulation_utils/util_perception.hpp>
 #include <simulation_utils/util_planner.hpp>
 #include <simulation_utils/util_single_track_model.hpp>
@@ -30,8 +30,8 @@ namespace sim_sample_actuator_ros_tool {
 
 class ActuatorSingleTrackModel {
 
-    using Subscriber = message_filters::Subscriber<simulation_only_msgs::StampedFloat64>;
-    using Cache = message_filters::Cache<simulation_only_msgs::StampedFloat64>;
+    using Subscriber = message_filters::Subscriber<automated_driving_msgs::StampedFloat64>;
+    using Cache = message_filters::Cache<automated_driving_msgs::StampedFloat64>;
 
 public:
     ActuatorSingleTrackModel(ros::NodeHandle, ros::NodeHandle);
@@ -66,8 +66,8 @@ private:
     tf2_ros::TransformBroadcaster tfBroadcaster_;
 
     void actuatorTimerCallback(const ros::TimerEvent&);
-    void steeringCallback(const simulation_only_msgs::StampedFloat64::ConstPtr&);
-    void accelerationCallback(const simulation_only_msgs::StampedFloat64::ConstPtr&);
+    void steeringCallback(const automated_driving_msgs::StampedFloat64::ConstPtr&);
+    void accelerationCallback(const automated_driving_msgs::StampedFloat64::ConstPtr&);
     void objectStateArraySubCallback(const automated_driving_msgs::ObjectStateArray::ConstPtr& msg);
 
     void publishDeltaTraj();
