@@ -17,8 +17,8 @@
 #include <automated_driving_msgs/MotionState.h>
 #include <automated_driving_msgs/ObjectState.h>
 #include <automated_driving_msgs/ObjectStateArray.h>
-#include <simulation_only_msgs/DeltaTrajectoryWithID.h>
 #include <automated_driving_msgs/StampedFloat64.h>
+#include <simulation_only_msgs/DeltaTrajectoryWithID.h>
 #include <simulation_utils/util_perception.hpp>
 #include <simulation_utils/util_planner.hpp>
 #include <simulation_utils/util_single_track_model.hpp>

@@ -36,7 +36,8 @@ ActuatorSingleTrackModel::ActuatorSingleTrackModel(ros::NodeHandle node_handle, 
     vehicleMotionPublisher_ = node_handle.advertise<simulation_only_msgs::DeltaTrajectoryWithID>(
         params_.desired_motion_out_topic, params_.msg_queue_size);
 
-    actuatorTimer_ = node_handle.createTimer(ros::Duration(1./params_.actuator_frequency), &ActuatorSingleTrackModel::actuatorTimerCallback, this);
+    actuatorTimer_ = node_handle.createTimer(
+        ros::Duration(1. / params_.actuator_frequency), &ActuatorSingleTrackModel::actuatorTimerCallback, this);
     objectStateArraySub_ = node_handle.subscribe(params_.objects_ground_truth_topic_with_ns,
                                                  params_.msg_queue_size,
                                                  &ActuatorSingleTrackModel::objectStateArraySubCallback,
@@ -74,7 +75,8 @@ void ActuatorSingleTrackModel::accelerationCallback(const automated_driving_msgs
     accelerationBuffer_ = msg_cached->data;
 }
 
-void ActuatorSingleTrackModel::objectStateArraySubCallback(const automated_driving_msgs::ObjectStateArray::ConstPtr& msg) {
+void ActuatorSingleTrackModel::objectStateArraySubCallback(
+    const automated_driving_msgs::ObjectStateArray::ConstPtr& msg) {
     // taken from sim_sample_perception_ros_tool/exact_localization_sensor
 
     bool foundAndUnique;
@@ -130,10 +132,10 @@ void ActuatorSingleTrackModel::objectStateArraySubCallback(const automated_drivi
 */
 void ActuatorSingleTrackModel::reconfigureRequest(ActuatorSingleTrackModelConfig& config, uint32_t level) {
     params_.fromConfig(config);
-    actuatorTimer_.setPeriod(ros::Duration(1./params_.actuator_frequency));
+    actuatorTimer_.setPeriod(ros::Duration(1. / params_.actuator_frequency));
 }
 
-void ActuatorSingleTrackModel::actuatorTimerCallback(const ros::TimerEvent& event){
+void ActuatorSingleTrackModel::actuatorTimerCallback(const ros::TimerEvent& event) {
     publishDeltaTraj();
 }
 

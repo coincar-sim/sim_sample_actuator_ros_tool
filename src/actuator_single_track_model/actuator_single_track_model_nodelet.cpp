@@ -16,4 +16,7 @@ void ActuatorSingleTrackModelNodelet::onInit() {
 
 } // namespace sim_sample_actuator_ros_tool
 
-PLUGINLIB_DECLARE_CLASS(sim_sample_actuator_ros_tool, ActuatorSingleTrackModelNodelet, sim_sample_actuator_ros_tool::ActuatorSingleTrackModelNodelet, nodelet::Nodelet);
+PLUGINLIB_DECLARE_CLASS(sim_sample_actuator_ros_tool,
+                        ActuatorSingleTrackModelNodelet,
+                        sim_sample_actuator_ros_tool::ActuatorSingleTrackModelNodelet,
+                        nodelet::Nodelet);
