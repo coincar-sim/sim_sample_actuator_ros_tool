@@ -45,8 +45,6 @@ private:
     std::unique_ptr<Cache> cacheSteering_;
     std::unique_ptr<Cache> cacheAcceleration_;
 
-    ActuatorSingleTrackModelParameters params_;
-
     int objectID_;
     double accelerationBuffer_;
     double steeringBuffer_;
@@ -60,6 +58,8 @@ private:
     util_single_track_model::VehicleModel vehicleModel_;
 
     dynamic_reconfigure::Server<ActuatorSingleTrackModelConfig> reconfigSrv_; // Dynamic reconfiguration service
+
+    ActuatorSingleTrackModelParameters params_;
 
     tf2_ros::Buffer tfBuffer_;
     tf2_ros::TransformListener tfListener_;
