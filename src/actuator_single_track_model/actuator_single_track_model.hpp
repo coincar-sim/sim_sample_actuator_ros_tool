@@ -23,7 +23,7 @@
 #include <simulation_utils/util_planner.hpp>
 #include <simulation_utils/util_single_track_model.hpp>
 
-#include "sim_sample_actuator_ros_tool/ActuatorSingleTrackModelParameters.h"
+#include "sim_sample_actuator_ros_tool/ActuatorSingleTrackModelInterface.h"
 
 
 namespace sim_sample_actuator_ros_tool {
@@ -59,7 +59,7 @@ private:
 
     dynamic_reconfigure::Server<ActuatorSingleTrackModelConfig> reconfigSrv_; // Dynamic reconfiguration service
 
-    ActuatorSingleTrackModelParameters params_;
+    ActuatorSingleTrackModelInterface params_;
 
     tf2_ros::Buffer tfBuffer_;
     tf2_ros::TransformListener tfListener_;

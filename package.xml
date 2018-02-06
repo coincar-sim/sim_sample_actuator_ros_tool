@@ -20,7 +20,7 @@
   <depend>eigen_conversions</depend>
   <depend>geodesy</depend>
   <depend>dynamic_reconfigure</depend>
-  <depend>rosparam_handler</depend>
+  <depend>rosinterface_handler</depend>
   <depend>tf2_ros</depend>
   <depend>tf2_geometry_msgs</depend>
   <depend>simulation_only_msgs</depend>
