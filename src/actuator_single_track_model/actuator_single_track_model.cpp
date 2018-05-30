@@ -1,5 +1,38 @@
-#include "actuator_single_track_model.hpp"
+/*
+ * Copyright (c) 2017
+ * FZI Forschungszentrum Informatik, Karlsruhe, Germany (www.fzi.de)
+ * KIT, Institute of Measurement and Control, Karlsruhe, Germany (www.mrt.kit.edu)
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. Neither the name of the copyright holder nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software without
+ *    specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 #include <stdio.h>
+#include <util_automated_driving_msgs/util_automated_driving_msgs.hpp>
+#include <util_geometry_msgs/util_geometry_msgs.hpp>
+
+#include "actuator_single_track_model.hpp"
 
 namespace sim_sample_actuator_ros_tool {
 
@@ -22,8 +55,8 @@ ActuatorSingleTrackModel::ActuatorSingleTrackModel(ros::NodeHandle node_handle, 
 
     accelerationBuffer_ = 0.0;
     steeringBuffer_ = 0.0;
-    latestMotionState_.pose.covariance = util_perception::invalidCov;
-    velocityValid_ = false;
+    latestMotionState_.pose.covariance = util_geometry_msgs::checks::covarianceUnkownValues;
+    latestMotionState_.twist.covariance = util_geometry_msgs::checks::covarianceUnkownValues;
     controlCommandsReceived_ = false;
     /**
      * Set up dynamic reconfiguration
@@ -81,45 +114,31 @@ void ActuatorSingleTrackModel::objectStateArraySubCallback(
 
     bool foundAndUnique;
     automated_driving_msgs::ObjectState egoObjectState =
-        util_perception::ObjectStateFromObjectStateArray(*msg, params_.vehicle_id, foundAndUnique);
+        util_automated_driving_msgs::conversions::objectStateFromObjectStateArray(
+            msg, params_.vehicle_id, foundAndUnique);
 
     if (!foundAndUnique) {
         return;
     } else {
         ros::Duration deltaTime = egoObjectState.header.stamp - latestMotionState_.header.stamp;
 
-        if (!util_perception::poseValid(egoObjectState.motion_state)) {
+        if (!util_automated_driving_msgs::checks::poseValid(egoObjectState.motion_state)) {
             // ROS_DEBUG("Received MotionState.pose is marked as unreliable. Forwarding it
             // anyway.");
         }
 
-        if (!util_perception::twistValid(egoObjectState.motion_state)) {
-            if (util_perception::poseValid(latestMotionState_)) {
-                util_perception::diffPoseToTwist(latestMotionState_.pose.pose,
-                                                 egoObjectState.motion_state.pose.pose,
-                                                 deltaTime,
-                                                 egoObjectState.motion_state.twist);
-                double v_x = egoObjectState.motion_state.twist.twist.linear.x;
-                double v_y = egoObjectState.motion_state.twist.twist.linear.y;
-                double v_z = egoObjectState.motion_state.twist.twist.linear.z;
-                currentVelocity_ = std::sqrt(v_x * v_x + v_y * v_y + v_z * v_z);
-                velocityValid_ = true;
-            } else {
-                velocityValid_ = false;
-                ROS_DEBUG_THROTTLE(1, "Could not calculate current velocity as latest pose not valid.");
-            }
-        }
+        util_automated_driving_msgs::computations::incorporatePrecedingDataToMotionstate(latestMotionState_,
+                                                                                         egoObjectState.motion_state);
 
-        if (!util_perception::accelValid(egoObjectState.motion_state)) {
-            if (util_perception::twistValid(latestMotionState_) &&
-                util_perception::twistValid(egoObjectState.motion_state)) {
-                util_perception::diffTwistToAccel(latestMotionState_.twist.twist,
-                                                  egoObjectState.motion_state.twist.twist,
-                                                  deltaTime,
-                                                  egoObjectState.motion_state.accel);
-            } else {
-                // ROS_DEBUG("Could not calculate accel as latest twists not valid.");
-            }
+        if (util_automated_driving_msgs::checks::twistValid(egoObjectState.motion_state)) {
+            double v_x = egoObjectState.motion_state.twist.twist.linear.x;
+            double v_y = egoObjectState.motion_state.twist.twist.linear.y;
+            double v_z = egoObjectState.motion_state.twist.twist.linear.z;
+            currentVelocity_ = std::sqrt(v_x * v_x + v_y * v_y + v_z * v_z);
+            velocityValid_ = true;
+        } else {
+            velocityValid_ = false;
+            ROS_DEBUG_THROTTLE(1, "Could not calculate current velocity as latest pose not valid.");
         }
     }
 

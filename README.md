@@ -6,7 +6,7 @@ Sample actuator module for a vehicle in the simulation framework.
 
 ## Installation
 * this package is part of the simulation framework
-* see simulation_management_ros_tool for installation and more details
+* see [coincarsim_getting_started](https://github.com/coincar-sim/coincarsim_getting_started) for installation and more details
 
 ## Usage
 * started within the a vehicle launchfile of the simulation_initialization_ros_tool
@@ -37,4 +37,4 @@ Sample actuator module for a vehicle in the simulation framework.
   * all internal ROS communication stays within the perception namespace
 
 ## License
-Contact the maintainer.
+This package is distributed under the 3-Clause BSD License, see [LICENSE](LICENSE).
