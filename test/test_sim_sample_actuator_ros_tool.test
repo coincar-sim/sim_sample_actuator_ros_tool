@@ -1,5 +1,38 @@
 <launch>
-  <!-- use this like a normal launch file to set up your test environment. The test tag below is used to launch your unittest node-->
 
-  <test test-name="sim_sample_actuator_ros_tool" pkg="sim_sample_actuator_ros_tool" type="test_sim_sample_actuator_ros_tool-test" />
+  <arg name="vehicle_id" value="1" />
+  <arg name="vehicle_ns" value="v$(arg vehicle_id)" />
+
+  <arg name="steering_angle_in_topic" value="steering" />
+  <arg name="acceleration_in_topic" value="acceleration" />
+  <arg name="objects_ground_truth_topic_with_ns" value="/objects_ground_truth" />
+  <arg name="desired_motion_topic_with_ns" value="/desired_motion" />
+
+  <!-- launch actuator -->
+  <param name="/actuator_single_track_model/verbosity" value="debug"/>
+  <include file="$(find sim_sample_actuator_ros_tool)/launch/sample_actuator.launch" >
+      <arg name="vehicle_id" value="$(arg vehicle_id)" />
+      <arg name="vehicle_ns" value="$(arg vehicle_ns)" />
+
+      <arg name="steering_angle_in_topic" value="$(arg steering_angle_in_topic)" />
+      <arg name="acceleration_in_topic" value="$(arg acceleration_in_topic)" />
+      <arg name="objects_ground_truth_topic_with_ns" value="$(arg objects_ground_truth_topic_with_ns)" />
+      <arg name="desired_motion_topic_with_ns" value="$(arg desired_motion_topic_with_ns)" />
+  </include>
+
+  <!-- publish ground truth message -->
+  <node pkg="rostopic" type="rostopic" name="ground_truth_pub" args="pub -r 0.5 $(arg objects_ground_truth_topic_with_ns) automated_driving_msgs/ObjectStateArray -f $(find sim_sample_actuator_ros_tool)/test/res/object_state_array_msg.yaml" output="screen">
+  </node>
+
+  <!-- publish steering and acceleration -->
+  <node pkg="rostopic" type="rostopic" name="steering_publisher" args="pub -r 10 /$(arg vehicle_ns)/$(arg steering_angle_in_topic) automated_driving_msgs/StampedFloat64 -s '{header: {seq: 0, stamp: now, frame_id: test_frame}, data: 0.0}'" output="screen">
+  </node>
+  <node pkg="rostopic" type="rostopic" name="accel_publisher" args="pub -r 10 /$(arg vehicle_ns)/$(arg acceleration_in_topic) automated_driving_msgs/StampedFloat64 -s '{header: {seq: 0, stamp: now, frame_id: test_frame}, data: 0.0}'" output="screen">
+  </node>
+
+  <!-- test if desired motion is sent -->
+  <test test-name="test_actuator" pkg="sim_sample_actuator_ros_tool" type="test_sim_sample_actuator_ros_tool.py" time-limit="60.0" >
+      <param name="subscriber_topic" value="$(arg desired_motion_topic_with_ns)"/>
+  </test>
+
 </launch>

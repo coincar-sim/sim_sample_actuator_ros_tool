@@ -1,0 +1,261 @@
+header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: map
+objects:
+  -
+    header:
+      seq: 0
+      stamp:
+        secs: 0
+        nsecs: 0
+      frame_id: map
+    object_id: 1
+    existence_probability: 1.0
+    classification:
+      classes_with_probabilities:
+        -
+          classification: 4
+          probability: 1.0
+    motion_state:
+      header:
+        seq: 0
+        stamp:
+          secs: 0
+          nsecs: 0
+        frame_id: map
+      child_frame_id: object1
+      pose:
+        pose:
+          position:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          orientation:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+            w: 1.0
+        covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      twist:
+        twist:
+          linear:
+            x: 1.0
+            y: 0.0
+            z: 0.0
+          angular:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+        covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      accel:
+        accel:
+          linear:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          angular:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+        covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    motion_prediction:
+      header:
+        seq: 0
+        stamp:
+          secs: 0
+          nsecs: 0
+        frame_id: ''
+      trajectories: []
+    hull:
+      triangles:
+        -
+          vertex_indices: [0, 1, 2]
+        -
+          vertex_indices: [0, 2, 3]
+        -
+          vertex_indices: [4, 5, 6]
+        -
+          vertex_indices: [4, 6, 7]
+        -
+          vertex_indices: [0, 3, 7]
+        -
+          vertex_indices: [0, 7, 4]
+        -
+          vertex_indices: [1, 2, 6]
+        -
+          vertex_indices: [1, 6, 5]
+        -
+          vertex_indices: [2, 3, 7]
+        -
+          vertex_indices: [2, 7, 6]
+        -
+          vertex_indices: [0, 1, 5]
+        -
+          vertex_indices: [0, 5, 4]
+      vertices:
+        -
+          x: -2.0
+          y: 1.0
+          z: 0.0
+        -
+          x: -2.0
+          y: -1.0
+          z: 0.0
+        -
+          x: 2.0
+          y: -1.0
+          z: 0.0
+        -
+          x: 2.0
+          y: 1.0
+          z: 0.0
+        -
+          x: -2.0
+          y: 1.0
+          z: 1.5
+        -
+          x: -2.0
+          y: -1.0
+          z: 1.5
+        -
+          x: 2.0
+          y: -1.0
+          z: 1.5
+        -
+          x: 2.0
+          y: 1.0
+          z: 1.5
+---
+header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: map
+objects:
+  -
+    header:
+      seq: 0
+      stamp:
+        secs: 0
+        nsecs: 0
+      frame_id: map
+    object_id: 1
+    existence_probability: 1.0
+    classification:
+      classes_with_probabilities:
+        -
+          classification: 4
+          probability: 1.0
+    motion_state:
+      header:
+        seq: 0
+        stamp:
+          secs: 0
+          nsecs: 0
+        frame_id: map
+      child_frame_id: object1
+      pose:
+        pose:
+          position:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          orientation:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+            w: 1.0
+        covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      twist:
+        twist:
+          linear:
+            x: 1.0
+            y: 0.0
+            z: 0.0
+          angular:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+        covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+      accel:
+        accel:
+          linear:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+          angular:
+            x: 0.0
+            y: 0.0
+            z: 0.0
+        covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    motion_prediction:
+      header:
+        seq: 0
+        stamp:
+          secs: 0
+          nsecs: 0
+        frame_id: ''
+      trajectories: []
+    hull:
+      triangles:
+        -
+          vertex_indices: [0, 1, 2]
+        -
+          vertex_indices: [0, 2, 3]
+        -
+          vertex_indices: [4, 5, 6]
+        -
+          vertex_indices: [4, 6, 7]
+        -
+          vertex_indices: [0, 3, 7]
+        -
+          vertex_indices: [0, 7, 4]
+        -
+          vertex_indices: [1, 2, 6]
+        -
+          vertex_indices: [1, 6, 5]
+        -
+          vertex_indices: [2, 3, 7]
+        -
+          vertex_indices: [2, 7, 6]
+        -
+          vertex_indices: [0, 1, 5]
+        -
+          vertex_indices: [0, 5, 4]
+      vertices:
+        -
+          x: -2.0
+          y: 1.0
+          z: 0.0
+        -
+          x: -2.0
+          y: -1.0
+          z: 0.0
+        -
+          x: 2.0
+          y: -1.0
+          z: 0.0
+        -
+          x: 2.0
+          y: 1.0
+          z: 0.0
+        -
+          x: -2.0
+          y: 1.0
+          z: 1.5
+        -
+          x: -2.0
+          y: -1.0
+          z: 1.5
+        -
+          x: 2.0
+          y: -1.0
+          z: 1.5
+        -
+          x: 2.0
+          y: 1.0
+          z: 1.5
