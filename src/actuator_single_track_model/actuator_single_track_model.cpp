@@ -58,6 +58,7 @@ ActuatorSingleTrackModel::ActuatorSingleTrackModel(ros::NodeHandle node_handle, 
     latestMotionState_.pose.covariance = util_geometry_msgs::checks::covarianceUnkownValues;
     latestMotionState_.twist.covariance = util_geometry_msgs::checks::covarianceUnkownValues;
     controlCommandsReceived_ = false;
+    velocityValid_ = false;
     /**
      * Set up dynamic reconfiguration
      */
@@ -118,14 +119,9 @@ void ActuatorSingleTrackModel::objectStateArraySubCallback(
             msg, params_.vehicle_id, foundAndUnique);
 
     if (!foundAndUnique) {
+        ROS_DEBUG_THROTTLE(1, "Object not in objectStateArray.");
         return;
     } else {
-        ros::Duration deltaTime = egoObjectState.header.stamp - latestMotionState_.header.stamp;
-
-        if (!util_automated_driving_msgs::checks::poseValid(egoObjectState.motion_state)) {
-            // ROS_DEBUG("Received MotionState.pose is marked as unreliable. Forwarding it
-            // anyway.");
-        }
 
         util_automated_driving_msgs::computations::incorporatePrecedingDataToMotionstate(latestMotionState_,
                                                                                          egoObjectState.motion_state);
@@ -138,7 +134,7 @@ void ActuatorSingleTrackModel::objectStateArraySubCallback(
             velocityValid_ = true;
         } else {
             velocityValid_ = false;
-            ROS_DEBUG_THROTTLE(1, "Could not calculate current velocity as latest pose not valid.");
+            ROS_DEBUG_THROTTLE(1, "Could not calculate current velocity as latest twist not valid.");
         }
     }
 
@@ -172,7 +168,10 @@ void ActuatorSingleTrackModel::publishDeltaTraj() {
 
         vehicleMotionPublisher_.publish(msg);
     } else {
-        ROS_WARN_THROTTLE(1, "Currently not publishing any desired motion");
+        if (!velocityValid_)
+            ROS_WARN_THROTTLE(1, "Currently not publishing any desired motion, no valid velocity.");
+        if (!controlCommandsReceived_)
+            ROS_WARN_THROTTLE(1, "Currently not publishing any desired motion, no control commands received.");
     }
 }
 
