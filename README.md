@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/coincar-sim/sim_sample_actuator_ros_tool.svg)](https://travis-ci.org/coincar-sim/sim_sample_actuator_ros_tool)
+
 # sim_sample_actuator_ros_tool
 Sample actuator module for a vehicle in the simulation framework.
 
