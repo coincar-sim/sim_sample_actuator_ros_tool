@@ -20,3 +20,6 @@
 - git:
     local-name: util_geometry_msgs
     uri: https://github.com/coincar-sim/util_geometry_msgs.git
+- git:
+    local-name: util_eigen_geometry
+    uri: https://github.com/coincar-sim/util_eigen_geometry.git
