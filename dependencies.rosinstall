@@ -12,9 +12,6 @@
     local-name: simulation_only_msgs
     uri: https://github.com/coincar-sim/simulation_only_msgs.git
 - git:
-    local-name: sim_lanelet
-    uri: https://github.com/coincar-sim/sim_lanelet.git
-- git:
     local-name: util_automated_driving_msgs
     uri: https://github.com/coincar-sim/util_automated_driving_msgs.git
 - git:

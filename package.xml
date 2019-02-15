@@ -25,7 +25,6 @@
   <depend>tf2_geometry_msgs</depend>
   <depend>simulation_only_msgs</depend>
   <depend>automated_driving_msgs</depend>
-  <depend>sim_lanelet</depend>
   <depend>util_automated_driving_msgs</depend>
   <depend>util_geometry_msgs</depend>
 
