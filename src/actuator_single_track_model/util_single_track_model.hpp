@@ -30,11 +30,6 @@
 
 #pragma once
 
-#include <stdexcept>
-
-#include <ros/ros.h>
-#include <ros/time.h>
-
 #include "simulation_only_msgs/DeltaTrajectoryWithID.h"
 
 namespace util_single_track_model {

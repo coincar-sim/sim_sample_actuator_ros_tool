@@ -29,6 +29,7 @@
  */
 
 #include <util_geometry_msgs/util_geometry_msgs.hpp>
+#include <ros/ros.h>
 
 #include "util_single_track_model.hpp"
 

@@ -30,19 +30,10 @@
 
 #pragma once
 
-#include <list>
-#include <memory>
-#include <string.h>
-#include <time.h>
 #include <dynamic_reconfigure/server.h>
 #include <message_filters/cache.h>
 #include <message_filters/subscriber.h>
 #include <ros/ros.h>
-#include <std_msgs/Float64.h>
-#include <std_msgs/Header.h>
-#include <tf/transform_broadcaster.h>
-#include <tf2_ros/transform_broadcaster.h>
-#include <tf2_ros/transform_listener.h>
 
 #include <automated_driving_msgs/MotionState.h>
 #include <automated_driving_msgs/ObjectState.h>
@@ -89,10 +80,6 @@ private:
     dynamic_reconfigure::Server<ActuatorSingleTrackModelConfig> reconfigSrv_; // Dynamic reconfiguration service
 
     ActuatorSingleTrackModelInterface params_;
-
-    tf2_ros::Buffer tfBuffer_;
-    tf2_ros::TransformListener tfListener_;
-    tf2_ros::TransformBroadcaster tfBroadcaster_;
 
     void actuatorTimerCallback(const ros::TimerEvent&);
     void steeringCallback(const automated_driving_msgs::StampedFloat64::ConstPtr&);

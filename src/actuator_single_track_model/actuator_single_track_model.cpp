@@ -37,7 +37,7 @@
 namespace sim_sample_actuator_ros_tool {
 
 ActuatorSingleTrackModel::ActuatorSingleTrackModel(ros::NodeHandle node_handle, ros::NodeHandle private_node_handle)
-        : reconfigSrv_{private_node_handle}, params_{private_node_handle}, tfListener_{tfBuffer_} {
+        : reconfigSrv_{private_node_handle}, params_{private_node_handle} {
 
     /**
      * Initialization
