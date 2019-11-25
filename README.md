@@ -38,5 +38,8 @@ Sample actuator module for a vehicle in the simulation framework.
   * `$(arg desired_motion_topic_with_ns)` is published
   * all internal ROS communication stays within the perception namespace
 
+## Contributors
+Nick Engelhardt, Maximilian Naumann, Sascha Wirges
+
 ## License
 This package is distributed under the 3-Clause BSD License, see [LICENSE](LICENSE).
