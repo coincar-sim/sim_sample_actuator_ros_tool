@@ -28,9 +28,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "actuator_single_track_model.hpp"
 #include <nodelet/nodelet.h>
 #include <pluginlib/class_list_macros.h>
+#include "actuator_single_track_model.hpp"
 
 namespace sim_sample_actuator_ros_tool {
 
@@ -46,5 +46,4 @@ void ActuatorSingleTrackModelNodelet::onInit() {
 
 } // namespace sim_sample_actuator_ros_tool
 
-PLUGINLIB_EXPORT_CLASS(sim_sample_actuator_ros_tool::ActuatorSingleTrackModelNodelet,
-                       nodelet::Nodelet);
+PLUGINLIB_EXPORT_CLASS(sim_sample_actuator_ros_tool::ActuatorSingleTrackModelNodelet, nodelet::Nodelet);

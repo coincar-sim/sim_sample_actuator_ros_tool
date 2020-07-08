@@ -143,8 +143,8 @@ void ActuatorSingleTrackModel::objectStateArraySubCallback(
 }
 
 /**
-  * This callback is called whenever a change was made in the dynamic_reconfigure window
-*/
+ * This callback is called whenever a change was made in the dynamic_reconfigure window
+ */
 void ActuatorSingleTrackModel::reconfigureRequest(ActuatorSingleTrackModelConfig& config, uint32_t level) {
     params_.fromConfig(config);
     actuatorTimer_.setPeriod(ros::Duration(1. / params_.actuator_frequency));
