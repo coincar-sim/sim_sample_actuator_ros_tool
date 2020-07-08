@@ -1,4 +1,4 @@
-<library path="lib/libactuator_single_track_model_nodelet">
+<library path="lib/libsim_sample_actuator_ros_tool-actuator_single_track_model-nodelet">
 <class name="sim_sample_actuator_ros_tool/ActuatorSingleTrackModelNodelet"
        type="sim_sample_actuator_ros_tool::ActuatorSingleTrackModelNodelet" base_class_type="nodelet::Nodelet">
   <description></description>
