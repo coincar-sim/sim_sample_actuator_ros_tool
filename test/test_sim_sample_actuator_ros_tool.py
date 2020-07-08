@@ -1,18 +1,18 @@
 #!/usr/bin/env python
+from dynamic_reconfigure.client import Client
+from simulation_only_msgs.msg import DeltaTrajectoryWithID
+import time
+import rospy
+import unittest
+import sys
 PKG = "sim_sample_actuator_ros_tool"
 
-import sys
-
-import unittest
-import rospy
-import time
-from simulation_only_msgs.msg import DeltaTrajectoryWithID
-from dynamic_reconfigure.client import Client
 
 class Listener:
     """
     Can be used to block and wait for a message
     """
+
     def __init__(self, topic, msg):
         """
         Create a Listener
@@ -31,7 +31,7 @@ class Listener:
         waitcount = 0
         while waitcount < 20 and not self.msg and not rospy.is_shutdown():
             waitcount += 1
-            time.sleep(timeout.to_sec()/20.)
+            time.sleep(timeout.to_sec() / 20.)
         return self.msg
 
     def _on_message(self, msg):
