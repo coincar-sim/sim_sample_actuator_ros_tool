@@ -1,10 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
 <package format="2">
   <name>sim_sample_actuator_ros_tool</name>
   <version>0.5.0</version>
   <description>Sample actuator module for a vehicle in the simulation framework.</description>
 
   <license>BSD</license>
-  <maintainer email="maximilian.naumann@kit.edu">Maximilian Naumann</maintainer>
+  <maintainer email="eduardo.molinos@kit.edu">Eduardo Molinos</maintainer>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>mrt_cmake_modules</build_depend>
